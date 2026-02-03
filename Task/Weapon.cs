@@ -20,6 +20,10 @@ namespace Task
             Name = name;
             Durability = 1;
         }
+        public Weapon(string name, int min, int max) :this(name)
+        {
+            SetDamageParams(min, max);
+        }
 
         public void SetDamageParams(int min, int max)
         {
@@ -33,10 +37,5 @@ namespace Task
         }
 
         public int GetDamage() => (minDamage + maxDamage)/2;
-
-        public Weapon(string name, int min, int max) :this(name)
-        {
-            SetDamageParams(min, max);
-        }
     }
 }
