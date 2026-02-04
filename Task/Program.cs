@@ -1,6 +1,4 @@
-﻿using System.Runtime.Remoting;
-
-namespace Task
+﻿]namespace Task
 {
     class Program
     {

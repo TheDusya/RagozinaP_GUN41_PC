@@ -12,7 +12,7 @@
 
         public Unit(string name)
         {
-            _health = 5; //shouldn't we set it somewhere to check the correct work?
+            _health = 5;
             Name = name;
             Damage = 5;
             Armor = 0.6f;
@@ -20,7 +20,7 @@
         public float GetRealHealth() => Health * (1f + Armor);
         public bool SetDamage(float value)
         {
-            _health = Health - value * Armor; //I'm not sure if I'm understanding correctly how this works:/
+            _health = Health - value * Armor;
             return Health <= 0f;
         }
     }
