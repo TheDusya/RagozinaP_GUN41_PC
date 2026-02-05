@@ -6,7 +6,7 @@
         public int Min { get => _min; }
         private int _max;
         public int Max { get => _max; }
-        private Random randomizer = new Random();
+        private readonly Random randomizer = new();
         public int Get => randomizer.Next(Min, Max);
         public Interval(int minValue, int maxValue)
         {
@@ -30,6 +30,8 @@
                 maxValue += 10;
                 Console.WriteLine($"WARNING! maxValue was equal to minValue.");
             }
+            _min = minValue;
+            _max = maxValue;
         }
     }
 }
