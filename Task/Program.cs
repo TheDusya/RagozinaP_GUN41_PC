@@ -92,7 +92,7 @@ namespace Task
                         else
                             firstNode.AddLast(lastNode);
                     }
-                    Console.Write("Your list: ");
+                    Console.WriteLine("Your list: ");
                     firstNode.Print();
                     Console.WriteLine("Your list backwards: ");
                     lastNode.PrintBackwards(); //затем вывести список в прямом и обратном порядках.
