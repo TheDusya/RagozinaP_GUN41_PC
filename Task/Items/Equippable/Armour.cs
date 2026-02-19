@@ -1,4 +1,4 @@
-﻿namespace Task.Items
+﻿namespace Task.Items.Equippable
 {
     public class Armour : EquippableItem
     {

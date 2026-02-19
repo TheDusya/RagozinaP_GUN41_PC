@@ -1,4 +1,4 @@
-﻿namespace Task.Items
+﻿namespace Task.Items.EconomicItems
 {
     public class Grindstone : UsableItem
     {
