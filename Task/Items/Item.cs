@@ -12,7 +12,9 @@
         }
         public bool TryStack(Item item)
         {
-            if (!IsStackable) 
+            if (!IsStackable)
+                return false;
+            if (item.GetType() != this.GetType())
                 return false;
             Amount += item.Amount;
             return true;
