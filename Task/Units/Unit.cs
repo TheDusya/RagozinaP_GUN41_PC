@@ -1,4 +1,7 @@
-﻿namespace Task.Units
+﻿using System.ComponentModel;
+using Task.Items;
+
+namespace Task.Units
 {
     public abstract class Unit
     {
@@ -13,10 +16,31 @@
             MaxHealth = maxHealth;
             BaseDamage = baseDamage;
         }
-        public void TakeDamage(uint damage) => throw new NotImplementedException();
-        public void DealDamage() => throw new NotImplementedException();
+        public void TakeDamage(uint damage)
+        {
+            int realDamage = (int)CalculateRecievedDamage(damage);
+            Health = (uint)Math.Max(Health - realDamage, 0);
+            DamageRecieverHandler();
+        }
+        protected abstract uint CalculateRecievedDamage(uint damage);
+        protected void DamageRecieverHandler()
+        {
+            Console.WriteLine($"{Name} is hit!");
+            if (Health <= 0)
+                Die();
+        }
+        protected abstract uint CalculateDealtDamage();
+        protected virtual void HandleBattleCompleted() { }
         public void Heal(uint delta) => 
             Health = Math.Min(Health + delta, MaxHealth);
+
+        public void AddItemToDictionary(Item item)
+        {
+            if (Inventory.TryAdd(item))
+                Console.WriteLine($"{item.Name} was added to inventory.");
+            else
+                Console.WriteLine($"Can't add {item.Name} to inventory, no space left.");
+        }
 
         public abstract void Die();
 
