@@ -2,12 +2,21 @@
 
 namespace GamePrototype.Items.EquipItems
 {
-    public sealed class Armour : EquipItem
+    public abstract class Armour : EquipItem
     {
         public Armour(uint defence, uint durability, string name) : base(durability, name) => Defence = defence;
 
-        public uint Defence { get; }
+        private uint Defence { get; }
 
-        public override EquipSlot Slot => EquipSlot.Armour;
+        public uint Defend()
+        {
+            if (Durability <= 0)
+            {
+                Console.WriteLine($"{Name} is broken and doesn't protect");
+                return 0;
+            }
+            else
+                return Defence;
+        }
     }
 }

@@ -62,6 +62,7 @@ namespace GamePrototype.Game
 
         private void StartRoomEncounter(DungeonRoom currentRoom, out bool success)
         {
+            Console.WriteLine($"You enter the room called {currentRoom.Name}");
             success = true;
             if (currentRoom.Loot != null) 
             {
