@@ -28,6 +28,7 @@ namespace Task.Units
             if (Health <= 0)
                 Die();
         }
+        public uint DealDamage() => CalculateDealtDamage();
         protected abstract uint CalculateDealtDamage();
         protected virtual void HandleBattleCompleted() { }
         public void Heal(uint delta) => 

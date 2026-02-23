@@ -1,4 +1,4 @@
-﻿namespace Task.Units
+﻿namespace Task.Utils
 {
     public enum SlotType 
     {
