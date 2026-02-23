@@ -1,5 +1,4 @@
-﻿using Task.Items;
-using Task.Units;
+﻿using Task.Units;
 
 namespace Task.Dungeon
 {
@@ -7,7 +6,7 @@ namespace Task.Dungeon
     {
         Enemy Monster { get; }
         public EnemyRoom(string name, Enemy monster) : base(name) => Monster = monster;
-        public virtual void WriteIntro()
+        public override void WriteIntro()
         {
             Console.WriteLine($"You enter the dangerous room - {Name}. {Monster.Name} was hiding here.\nPrepare to fight!");
         }

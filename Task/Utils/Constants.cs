@@ -1,6 +1,4 @@
-﻿using Task.Items.Equippable;
-
-namespace Task.Utils
+﻿namespace Task.Utils
 {
     public static class Constants
     {

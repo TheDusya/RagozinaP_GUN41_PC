@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Task.Items;
+﻿using Task.Items;
 
 namespace Task.Units
 {

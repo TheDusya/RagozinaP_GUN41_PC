@@ -15,6 +15,6 @@ namespace Task.Utils
             return player;
         }
 
-        public static Unit CreateGoblinEnemy() => new Goblin();
+        public static Enemy CreateGoblinEnemy() => new Goblin();
     }
 }

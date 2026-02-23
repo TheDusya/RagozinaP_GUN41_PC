@@ -8,7 +8,7 @@ namespace Task.Utils
         public static DungeonRoom BuildDungeon()
         {
             var enter = new DungeonRoom("Enter");
-            var monsterRoom = new LootRoom("Monster", UnitFactoryDemo.CreateGoblinEnemy());
+            var monsterRoom = new EnemyRoom("Monster", UnitFactoryDemo.CreateGoblinEnemy());
             var emptyRoom = new DungeonRoom("Empty");
             var lootRoom = new LootRoom("Loot1", new Gold(3));
             var lootStoneRoom = new LootRoom("Loot1", new Grindstone("Stone"));
