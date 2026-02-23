@@ -34,12 +34,12 @@ namespace Task.Units
         public void Heal(uint delta) => 
             Health = Math.Min(Health + delta, MaxHealth);
 
-        public void AddItemToDictionary(Item item)
+        public void AddItemToInventory(Item item)
         {
             if (Inventory.TryAdd(item))
-                Console.WriteLine($"{item.Name} was added to inventory.");
+                Console.WriteLine($"{item.Name} was added to inventory by {Name}.");
             else
-                Console.WriteLine($"Can't add {item.Name} to inventory, no space left.");
+                Console.WriteLine($"{Name} can't add {item.Name} to inventory, no space left.");
         }
 
         public abstract void Die();

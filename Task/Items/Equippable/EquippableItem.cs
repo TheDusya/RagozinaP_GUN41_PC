@@ -1,10 +1,13 @@
-﻿namespace Task.Items.Equippable
+﻿using Task.Units;
+
+namespace Task.Items.Equippable
 {
     public abstract class EquippableItem : Item
     {
         public override bool IsStackable => false;
         public uint Durability { get; protected set; }
         public uint MaxDurability { get; }
+        public abstract SlotType Slot { get; }
         public EquippableItem(string name, uint maxDurability) : base(name) 
         {
             MaxDurability = maxDurability;

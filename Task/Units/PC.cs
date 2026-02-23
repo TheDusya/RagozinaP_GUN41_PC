@@ -6,15 +6,22 @@ namespace Task.Units
 {
     public class PC : Unit
     {
-        private readonly Dictionary<SlotNames, Item> equipped = new();
+        private readonly Dictionary<SlotType, Item> equipped = new();
         private Armour? Armour =>
-            equipped.TryGetValue(SlotNames.ArmourSlot, out var armour) ? (Armour)armour : null;
+            equipped.TryGetValue(SlotType.Armour, out var armour) ? (Armour)armour : null;
         private Weapon? Weapon =>
-            equipped.TryGetValue(SlotNames.WeaponSlot, out var weapon) ? (Weapon)weapon : null;
-        public PC(string name, uint maxHealth = 30, uint baseDamage = 6) : base(name, maxHealth, baseDamage)
+            equipped.TryGetValue(SlotType.Weapon, out var weapon) ? (Weapon)weapon : null;
+        public PC(string name, uint maxHealth = 30, uint baseDamage = 6) : base(name, maxHealth, baseDamage) {}
+        public void Equip(EquippableItem equippableItem)
         {
-            equipped[SlotNames.WeaponSlot] = new Sword();
-            equipped[SlotNames.ArmourSlot] = new Armour();
+            var slot = equippableItem.Slot;
+            if (equipped.TryGetValue(slot, out var oldItem))
+            {
+                equipped[slot] = equippableItem;
+                AddItemToInventory(oldItem);
+            }
+            else
+                equipped[slot] = equippableItem;
         }
         protected override uint CalculateRecievedDamage(uint damage)
         {

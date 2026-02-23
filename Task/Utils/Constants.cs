@@ -1,8 +1,7 @@
 ﻿using Task.Items.Equippable;
 
-namespace Task
+namespace Task.Utils
 {
-    public enum SlotNames { ArmourSlot, WeaponSlot }
     public static class Constants
     {
         public const int INVENTORY_SIZE = 3;
