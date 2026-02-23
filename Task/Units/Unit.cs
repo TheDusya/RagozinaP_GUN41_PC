@@ -12,6 +12,7 @@ namespace Task.Units
         protected Unit(string name, uint maxHealth, uint baseDamage)
         {
             Name = name;
+            Health = maxHealth;
             MaxHealth = maxHealth;
             BaseDamage = baseDamage;
         }
@@ -30,7 +31,7 @@ namespace Task.Units
         }
         public uint DealDamage() => CalculateDealtDamage();
         protected abstract uint CalculateDealtDamage();
-        protected virtual void HandleBattleCompleted() { }
+        public virtual void HandleCombatComplete() { }
         public void Heal(uint delta) => 
             Health = Math.Min(Health + delta, MaxHealth);
 

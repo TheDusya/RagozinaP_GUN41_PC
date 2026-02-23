@@ -4,7 +4,7 @@ namespace Task.Dungeon
 {
     internal class LootRoom : DungeonRoom
     {
-        Item Loot { get; }
+        public Item Loot { get; }
         public LootRoom(string name, Item item) : base(name) => Loot = item;
         public virtual void WriteIntro()
         {

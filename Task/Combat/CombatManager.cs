@@ -24,8 +24,8 @@ namespace Task.Combat
         }
 
         private void WriteInstructions() => Console.WriteLine($"Type {RockPaperScissors.Rock} ({(int)RockPaperScissors.Rock})" +
-            $"or {RockPaperScissors.Paper} ({(int)RockPaperScissors.Rock})" +
-            $"or {RockPaperScissors.Scissors} ({(int)RockPaperScissors.Rock})");
+            $" or {RockPaperScissors.Paper} ({(int)RockPaperScissors.Paper})" +
+            $" or {RockPaperScissors.Scissors} ({(int)RockPaperScissors.Scissors})");
 
         private void HandleCombatInput(PC player, Enemy enemy, RockPaperScissors playerInput)
         {
