@@ -1,6 +1,6 @@
 ﻿namespace Task.GameElements.Cards
 {
-    internal class Card
+    internal struct Card
     {
         public readonly CardSuit Suit;
         public readonly CardValue Value;
