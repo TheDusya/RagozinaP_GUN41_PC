@@ -2,11 +2,11 @@
 using GamePrototype.Items.EquipItems;
 using GamePrototype.Units;
 
-namespace GamePrototype.Utils
+namespace GamePrototype.Utils.UnitFactories
 {
-    public class UnitFactoryDemo
+    public class UnitFactoryEasy : UnitFactory
     {
-        public static Unit CreatePlayer(string name)
+        public override Unit CreatePlayer(string name)
         {
             var player = new Player(name, 30, 30, 6);
             player.AddItemToInventory(new Sword(10, 15, "Sword"));
@@ -16,6 +16,6 @@ namespace GamePrototype.Utils
             return player;
         }
 
-        public static Unit CreateGoblinEnemy() => new Goblin(GameConstants.Goblin, 18, 18, 2);
+        public override Unit CreateGoblinEnemy() => new Goblin(GameConstants.Goblin, 18, 18, 2);
     }
 }

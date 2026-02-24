@@ -1,17 +1,21 @@
 ﻿using GamePrototype.Dungeon;
 using GamePrototype.Items.EconomicItems;
 using GamePrototype.Items.EquipItems;
+using GamePrototype.Units;
+using GamePrototype.Utils.UnitFactories;
 
-namespace GamePrototype.Utils
+namespace GamePrototype.Utils.DungeonBuilders
 {
-    public static class DungeonBuilder
+    public abstract class DungeonBuilder
     {
-        public static DungeonRoom BuildDungeon()
+        protected abstract UnitFactory MyUnitFactory { get; }
+
+        public DungeonRoom BuildDungeon()
         {
             var enter = new DungeonRoom("Enter");
             var axeRoom = new DungeonRoom("AxeRoom", new Axe(20, 10, "CoolAxe"));
-            var monsterRoom = new DungeonRoom("Monster", UnitFactoryDemo.CreateGoblinEnemy());
-            var anotherMonsterRoom = new DungeonRoom("AnotherMonster", UnitFactoryDemo.CreateGoblinEnemy());
+            var monsterRoom = new DungeonRoom("Monster", MyUnitFactory.CreateGoblinEnemy());
+            var anotherMonsterRoom = new DungeonRoom("AnotherMonster", MyUnitFactory.CreateGoblinEnemy());
             var emptyRoom = new DungeonRoom("Empty");
             var lootRoom = new DungeonRoom("Loot1", new Gold());
             var lootStoneRoom = new DungeonRoom("Loot1", new Grindstone("Stone"));
@@ -34,5 +38,6 @@ namespace GamePrototype.Utils
 
             return enter;
         }
+        public Unit CreatePlayer(string name) => MyUnitFactory.CreatePlayer(name);
     }
 }

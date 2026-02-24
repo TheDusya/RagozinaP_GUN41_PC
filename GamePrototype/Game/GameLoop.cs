@@ -2,6 +2,7 @@
 using GamePrototype.Dungeon;
 using GamePrototype.Units;
 using GamePrototype.Utils;
+using GamePrototype.Utils.DungeonBuilders;
 
 namespace GamePrototype.Game
 {
@@ -10,7 +11,7 @@ namespace GamePrototype.Game
         private Unit _player;
         private DungeonRoom _dungeon;
         private readonly CombatManager _combatManager = new CombatManager();
-        
+        private GameMode mode;
         public void StartGame() 
         {
             Initialize();
@@ -23,9 +24,19 @@ namespace GamePrototype.Game
         private void Initialize()
         {
             Console.WriteLine("Welcome, player!");
-            _dungeon = DungeonBuilder.BuildDungeon();
+            Console.WriteLine("Choose your difficulty (1 - easy, 2 - hard):");
+            DungeonBuilder dungeonBuilder;
+            int answer;
+            while (!int.TryParse(Console.ReadLine(), out answer) || !Enum.IsDefined(typeof(GameMode), answer))
+                Console.WriteLine("(1 - easy, 2 - hard)");
+            mode = (GameMode)answer;
+            if (mode is GameMode.Easy) 
+                dungeonBuilder = new DungeonBuilderEasy();
+            else 
+                dungeonBuilder = new DungeonBuilderHard();
+            _dungeon = dungeonBuilder.BuildDungeon();
             Console.WriteLine("Enter your name");
-            _player = UnitFactoryDemo.CreatePlayer(Console.ReadLine());
+            _player = dungeonBuilder.CreatePlayer(Console.ReadLine());
             Console.WriteLine($"Hello {_player.Name}");
         }
 
@@ -56,6 +67,7 @@ namespace GamePrototype.Game
                 }
             }
             Console.WriteLine($"Congratulations, {_player.Name}");
+            Console.WriteLine($"You've finished the game on {mode} mode.");
             Console.WriteLine("Result: ");
             Console.WriteLine(_player.ToString());
         }
