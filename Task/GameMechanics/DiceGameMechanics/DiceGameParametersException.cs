@@ -1,4 +1,4 @@
-﻿namespace Task.GameMechanics
+﻿namespace Task.GameMechanics.DiceGameMechanics
 {
     internal class DiceGameParametersException : Exception
     {

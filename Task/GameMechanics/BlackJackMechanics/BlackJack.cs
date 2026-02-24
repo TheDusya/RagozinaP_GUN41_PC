@@ -1,7 +1,7 @@
 ﻿using Task.GameElements;
 using Task.GameElements.Cards;
 
-namespace Task.GameMechanics
+namespace Task.GameMechanics.BlackJackMechanics
 {
     internal sealed class BlackJack : CasinoGameBase
     {

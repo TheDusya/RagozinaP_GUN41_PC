@@ -1,6 +1,6 @@
 ﻿using Task.GameElements.Dice;
 
-namespace Task.GameMechanics
+namespace Task.GameMechanics.DiceGameMechanics
 {
     internal class DiceGame : CasinoGameBase
     {

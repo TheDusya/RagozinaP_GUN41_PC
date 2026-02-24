@@ -1,4 +1,4 @@
-﻿namespace Task.GameMechanics
+﻿namespace Task.GameMechanics.BlackJackMechanics
 {
     internal class BlackJackParametersException : Exception
     {
