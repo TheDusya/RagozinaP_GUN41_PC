@@ -9,5 +9,6 @@
             Suit = suit;
             Value = value;
         }
+        public override string ToString() => Value.ToString() + " of " + Suit.ToString();
     }
 }

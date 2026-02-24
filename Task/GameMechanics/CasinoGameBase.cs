@@ -10,7 +10,7 @@ namespace Task.GameMechanics
         protected readonly Random _random;
         public CasinoGameBase() 
         {
-            FactoryMethod();
+            //FactoryMethod();
             _random = new Random();
         }
         public abstract void PlayGame();
