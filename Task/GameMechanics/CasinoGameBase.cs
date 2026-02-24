@@ -10,7 +10,6 @@ namespace Task.GameMechanics
         protected readonly Random _random;
         public CasinoGameBase() 
         {
-            //FactoryMethod();
             _random = new Random();
         }
         public abstract void PlayGame();
@@ -18,5 +17,7 @@ namespace Task.GameMechanics
         protected void OnLooseInvoke() => OnLose?.Invoke();
         protected void OnDrawInvoke() => OnDraw?.Invoke();
         protected abstract void FactoryMethod();
+        //к сожалению, я не поняла, что в контексте данной задачи должен производить и как должен работать FactoryMethod.
+        //понимаю, что этот вариант неверный и он точно не void, но оставляю так.
     }
 }
