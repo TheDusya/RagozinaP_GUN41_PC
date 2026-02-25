@@ -20,7 +20,7 @@ namespace Task.GameMechanics.BlackJackMechanics
             set => _currPoints[PlayerType.Computer] = value;
         }
 
-        public BlackJack(int deckSize=36)
+        public BlackJack(int deckSize=36) : base()
         {
             //будем рассматривать толко размеры колод, кратные 36, иначе как-то странно и непонятно, зачем нужно количество карт
             if (deckSize <= 0)

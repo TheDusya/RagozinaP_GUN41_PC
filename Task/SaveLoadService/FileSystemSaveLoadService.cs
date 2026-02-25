@@ -3,6 +3,7 @@
     internal class FileSystemSaveLoadService : ISaveLoadService<string>
     {
         private readonly string _path;
+        public bool IsEmpty => throw new NotImplementedException();
         public FileSystemSaveLoadService(string path)
         { 
             _path = path;

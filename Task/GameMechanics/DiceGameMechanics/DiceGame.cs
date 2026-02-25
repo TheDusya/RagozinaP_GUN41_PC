@@ -8,7 +8,7 @@ namespace Task.GameMechanics.DiceGameMechanics
         private int _minNum;
         private int _maxNum;
         private List<Dice> _diceList;
-        public DiceGame(int diceNum, int min, int max)
+        public DiceGame(int diceNum, int min, int max) : base()
         {
             if (diceNum <= 0)
                 throw new DiceGameParametersException("Dice number can not be less or equal to 0");
