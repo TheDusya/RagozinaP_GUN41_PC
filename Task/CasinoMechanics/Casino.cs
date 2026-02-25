@@ -13,7 +13,6 @@ namespace Task.CasinoMechanics
         private User _currUser;
         private BlackJack _blackJack;
         private DiceGame _diceGame;
-        public event EventHandler HandleResult;
 
         public Casino()
         {
@@ -38,16 +37,8 @@ namespace Task.CasinoMechanics
             bool answer = YesOrNo("yes", "no");
             if (!answer)
                 CreateAccount();
-            Console.WriteLine("Enter your name to log in.");
-            while (!TryLogIn(Console.ReadLine(), out _currUser))
-                Console.WriteLine("Not a valid name. If you lied about having an account, welcome to the endless loop.");
-            Console.WriteLine($"Hello-hello, {_currUser.Name}!");
-            if (_currUser.Bank == 0)
-            {
-                Console.WriteLine($"No money? Kicked!");
-                Environment.Exit(0);
-            }
-            Console.WriteLine($"You have {_currUser.Bank} netodollars in your bank, have fun!");
+            else
+                GreetTheExistingUser();
             Console.WriteLine("Choose a game (1 - Black Jack, 2 - dice)");
             bool isBlackJack = YesOrNo("Black Jack", "dice");
             Console.WriteLine("Make your bet!");
@@ -58,7 +49,7 @@ namespace Task.CasinoMechanics
                 _diceGame.PlayGame();
             //странно, что по ТЗ создаётся впечатление, будто мы сначала выводим результат ставки, потом результат игры.
             //но это читалось неоднозначно и я не стала реализовывать в таком виде.
-            Console.WriteLine("Byeeee!");
+            Console.WriteLine($"See you later, {_currUser.Name}! Byeeee!");
             SaveResults();
         }
 
@@ -75,9 +66,69 @@ namespace Task.CasinoMechanics
                 else break;
             }
         }
-        private void CreateAccount() => throw new NotImplementedException();
-        private bool TryLogIn(string name, out User user) => throw new NotImplementedException();
-        private void SaveResults() => throw new NotImplementedException();
+
+        private void CreateAccount()
+        {
+            Console.WriteLine("Enter your name. Letters and numbers only, please");
+            string name = FindAGoodName();
+            Console.WriteLine($"Nice to meet you, {name}! We gift you 100 netodollars as a greeting gift :)");
+            _saveLoadService.Save("100", name);
+            TryLogIn(name);
+        }
+
+        private string FindAGoodName()
+        {
+            string name;
+            while (true)
+            {
+                name = Console.ReadLine();
+                if (name != null && !name.Where(ch => !char.IsNumber(ch) && !char.IsLetter(ch)).Any())
+                    if (!_saveLoadService.DoesFileExists(name))
+                        break;
+                    else
+                        Console.WriteLine("This user already exists!");
+                else
+                    Console.WriteLine("Letters and numbers only!");
+            }
+            return name;
+        }
+
+        private bool TryLogIn(string name)
+        {
+            string bank;
+            try
+            {
+                bank = _saveLoadService.Load(name);
+            }
+            catch (SaveLoadServiceException)
+            {
+                return false;
+            }
+            if (int.TryParse(bank, out var bankNum))
+            {
+                _currUser = new User(name, bankNum);
+                return true;
+            }
+            else
+                throw new Exception("files don't work well");
+        }
+
+        private void GreetTheExistingUser()
+        {
+            Console.WriteLine("Enter your name to log in.");
+            while (!TryLogIn(Console.ReadLine()))
+                Console.WriteLine("Not a valid name. Try again. If you lied about having an account, welcome to the endless loop.");
+            Console.WriteLine($"Hello-hello, {_currUser.Name}!");
+            if (_currUser.Bank == 0)
+            {
+                Console.WriteLine($"No money? Kicked!");
+                Environment.Exit(0);
+            }
+            Console.WriteLine($"You have {_currUser.Bank} netodollars in your bank, have fun!");
+        }
+
+        private void SaveResults() => _saveLoadService.Save(_currUser.Bank.ToString(), _currUser.Name);
+
         private void HandleWin()
         {
             Console.WriteLine("Hurray, you won :(");
