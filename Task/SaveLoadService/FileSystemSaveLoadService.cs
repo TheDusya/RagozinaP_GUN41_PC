@@ -8,7 +8,7 @@ namespace Task.SaveLoadService
     {
         private readonly string _path;
         public string PathToFile(string filename) => Path.Combine(_path, filename) + ".txt";
-        public bool DoesFileExists(string filename) => File.Exists(PathToFile(filename));
+        public bool DoesFileExist(string filename) => File.Exists(PathToFile(filename));
 
         public FileSystemSaveLoadService(string path)
         { 

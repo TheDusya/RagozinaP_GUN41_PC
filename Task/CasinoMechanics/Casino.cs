@@ -83,7 +83,7 @@ namespace Task.CasinoMechanics
             {
                 name = Console.ReadLine();
                 if (name != null && !name.Where(ch => !char.IsNumber(ch) && !char.IsLetter(ch)).Any())
-                    if (!_saveLoadService.DoesFileExists(name))
+                    if (!_saveLoadService.DoesFileExist(name))
                         break;
                     else
                         Console.WriteLine("This user already exists!");
